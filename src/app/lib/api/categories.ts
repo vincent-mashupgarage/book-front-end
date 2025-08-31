@@ -1,12 +1,12 @@
 import apiClient from "./base";
-import { Category} from "@/app/types";
+import { Category } from "@/app/types";
 
 export interface CreateCategoryData {
-    name: string;
-    description?: string;
+  name: string;
+  description?: string;
 }
 
-export interface UpdateCategoryData extends Partial<CreateCategoryData> {}
+export interface UpdateCategoryData extends Partial<CreateCategoryData> { }
 
 const CATEGORIES_ENDPOINT = '/categories';
 
