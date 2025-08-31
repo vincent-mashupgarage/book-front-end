@@ -1,7 +1,7 @@
 // src/services/api/base.ts
 import axios from 'axios';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000/api/v1';
 
 export const apiClient = axios.create({
   baseURL: API_BASE_URL,
@@ -25,14 +25,14 @@ apiClient.interceptors.response.use(
   (response) => response,
   (error) => {
     console.error('API Error:', error.response?.data || error.message);
-    
+
     // Handle specific error codes
     if (error.response?.status === 401) {
       // Redirect to login or refresh token
       localStorage.removeItem('auth_token');
       window.location.href = '/login';
     }
-    
+
     return Promise.reject(error);
   }
 );
