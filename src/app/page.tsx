@@ -37,10 +37,10 @@ export default function Home() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center bg-white dark:bg-gray-950">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 dark:border-blue-400 mx-auto mb-4"></div>
+          <p className="text-gray-600 dark:text-gray-400">Loading...</p>
         </div>
       </div>
     );
@@ -48,9 +48,9 @@ export default function Home() {
 
   if (error) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center bg-white dark:bg-gray-950">
         <div className="text-center">
-          <p className="text-red-600 mb-4">{error}</p>
+          <p className="text-red-600 dark:text-red-400 mb-4">{error}</p>
           <Button onClick={() => window.location.reload()}>Try Again</Button>
         </div>
       </div>
@@ -88,10 +88,10 @@ export default function Home() {
       {/* Categories Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">
             Shop by Category
           </h2>
-          <p className="text-lg text-gray-600">
+          <p className="text-lg text-gray-600 dark:text-gray-400">
             Find books that match your interests
           </p>
         </div>
@@ -104,7 +104,7 @@ export default function Home() {
                   <CardTitle>{category.name}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-600">
+                  <p className="text-gray-600 dark:text-gray-400">
                     {category.description || 'Explore books in this category'}
                   </p>
                 </CardContent>
@@ -115,13 +115,13 @@ export default function Home() {
       </section>
 
       {/* Featured Books Section */}
-      <section className="bg-gray-50">
+      <section className="bg-gray-50 dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">
               Featured Books
             </h2>
-            <p className="text-lg text-gray-600">
+            <p className="text-lg text-gray-600 dark:text-gray-400">
               Discover our hand-picked selection
             </p>
           </div>
@@ -131,24 +131,24 @@ export default function Home() {
               <Link key={book.id} href={`/books/${book.slug}`}>
                 <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
                   <CardContent className="p-4">
-                    <div className="aspect-[3/4] bg-gray-200 rounded-md mb-4 flex items-center justify-center">
-                      <span className="text-gray-500 text-sm">Book Cover</span>
+                    <div className="aspect-[3/4] bg-gray-200 dark:bg-gray-700 rounded-md mb-4 flex items-center justify-center">
+                      <span className="text-gray-500 dark:text-gray-400 text-sm">Book Cover</span>
                     </div>
-                    <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2">
+                    <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-2 line-clamp-2">
                       {book.title}
                     </h3>
-                    <p className="text-sm text-gray-600 mb-2">
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
                       by {book.author}
                     </p>
-                    <p className="text-lg font-bold text-blue-600">
+                    <p className="text-lg font-bold text-blue-600 dark:text-blue-400">
                       {formatCurrency(book.price)}
                     </p>
                     {book.stock_quantity > 0 ? (
-                      <p className="text-sm text-green-600 mt-2">
+                      <p className="text-sm text-green-600 dark:text-green-400 mt-2">
                         In Stock
                       </p>
                     ) : (
-                      <p className="text-sm text-red-600 mt-2">
+                      <p className="text-sm text-red-600 dark:text-red-400 mt-2">
                         Out of Stock
                       </p>
                     )}
@@ -182,7 +182,7 @@ export default function Home() {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 px-4 py-2 rounded-md text-gray-900"
+                className="flex-1 px-4 py-2 rounded-md text-gray-900 dark:text-gray-100 dark:bg-gray-800 dark:border-gray-600"
               />
               <Button variant="secondary">
                 Subscribe

@@ -6,11 +6,13 @@ import { Book } from '@/app/types';
 import { booksService, cartsService } from '@/app/lib/api';
 import Button from '@/app/components/ui/Button';
 import Card, { CardContent, CardHeader, CardTitle } from '@/app/components/ui/Card';
-import { formatCurrency, formatDate, isAuthenticated } from '@/app/lib/utils';
+import { formatCurrency, formatDate } from '@/app/lib/utils';
+import { useAuth } from '@/app/contexts/AuthContext';
 
 export default function BookDetailPage() {
   const params = useParams();
   const router = useRouter();
+  const { user, isLoggedIn } = useAuth();
   const [book, setBook] = useState<Book | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -39,15 +41,15 @@ export default function BookDetailPage() {
   const handleAddToCart = async () => {
     if (!book) return;
 
-    if (!isAuthenticated()) {
+    if (!isLoggedIn || !user) {
       router.push('/login');
       return;
     }
 
     setAddingToCart(true);
     try {
-      // For now, assume user ID is 1 (we'll implement proper auth later)
-      const userId = 1;
+      // Use the actual logged-in user's ID
+      const userId = parseInt(user.id);
       
       // Get or create user's cart
       let cart;

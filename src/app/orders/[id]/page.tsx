@@ -221,12 +221,12 @@ export default function OrderDetailPage() {
       {/* Action Buttons */}
       <div className="mt-8 flex flex-col sm:flex-row gap-4">
         <Link href="/books">
-          <Button variant="primary" className="w-full sm:w-auto">
+          <Button variant={'default'} className="w-full sm:w-auto">
             Continue Shopping
           </Button>
         </Link>
         <Link href="/profile">
-          <Button variant="outline" className="w-full sm:w-auto">
+          <Button variant={'default'} className="w-full sm:w-auto">
             View All Orders
           </Button>
         </Link>

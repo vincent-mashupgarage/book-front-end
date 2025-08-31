@@ -8,9 +8,11 @@ import Button from '@/app/components/ui/Button';
 import Input from '@/app/components/ui/Input';
 import Card, { CardContent, CardHeader, CardTitle } from '@/app/components/ui/Card';
 import { isValidEmail } from '@/app/lib/utils';
+import { useAuth } from '@/app/contexts/AuthContext';
 
 export default function RegisterPage() {
   const router = useRouter();
+  const { login } = useAuth();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -88,15 +90,15 @@ export default function RegisterPage() {
         password: formData.password,
       });
       
-      // Store user data in localStorage
-      localStorage.setItem('user', JSON.stringify(loginResponse.user));
+      // Use the auth context to update the global auth state
+      login(loginResponse.user, loginResponse.token);
       
       // Redirect to home page
       router.push('/');
     } catch (err: any) {
       console.error('Registration failed:', err);
       setErrors({
-        general: err.response?.data?.message || 'Registration failed. Please try again.',
+        general: err.response?.data?.error || 'Registration failed. Please try again.',
       });
     } finally {
       setIsSubmitting(false);

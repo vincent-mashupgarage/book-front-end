@@ -7,10 +7,12 @@ import { cartsService, ordersService, usersService } from '@/app/lib/api';
 import Button from '@/app/components/ui/Button';
 import Input from '@/app/components/ui/Input';
 import Card, { CardContent, CardHeader, CardTitle } from '@/app/components/ui/Card';
-import { formatCurrency, calculateCartTotal, isAuthenticated } from '@/app/lib/utils';
+import { formatCurrency, calculateCartTotal } from '@/app/lib/utils';
+import { useAuth } from '@/app/contexts/AuthContext';
 
 export default function CheckoutPage() {
   const router = useRouter();
+  const { user: authUser, isLoggedIn } = useAuth();
   const [cart, setCart] = useState<Cart | null>(null);
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
@@ -21,18 +23,20 @@ export default function CheckoutPage() {
   const [paymentMethod, setPaymentMethod] = useState('credit_card');
 
   useEffect(() => {
-    if (!isAuthenticated()) {
+    if (!isLoggedIn || !authUser) {
       router.push('/login');
       return;
     }
     
     fetchData();
-  }, []);
+  }, [isLoggedIn, authUser]);
 
   const fetchData = async () => {
+    if (!authUser) return;
+    
     try {
-      // For now, assume user ID is 1 (we'll implement proper auth later)
-      const userId = 1;
+      // Use the actual logged-in user's ID
+      const userId = parseInt(authUser.id);
       
       const [cartData, userData] = await Promise.all([
         cartsService.getUserCart(userId),

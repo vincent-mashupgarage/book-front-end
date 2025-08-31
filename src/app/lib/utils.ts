@@ -1,4 +1,11 @@
 // Utility functions for the Bookworm application
+import { clsx, type ClassValue } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+
+// Class name utility for conditional classes with Tailwind CSS class merging
+export function cn(...inputs: ClassValue[]) {
+    return twMerge(clsx(inputs));
+}
 
 // Format currency
 export const formatCurrency = (amount: number): string => {
@@ -69,7 +76,3 @@ export const isAuthenticated = (): boolean => {
     return !!getAuthToken();
 };
 
-// Class name utility for conditional classes
-export const cn = (...classes: (string | undefined | null | false)[]): string => {
-    return classes.filter(Boolean).join(' ');
-};

@@ -7,28 +7,32 @@ import { Cart, CartItem } from '@/app/types';
 import { cartsService } from '@/app/lib/api';
 import Button from '@/app/components/ui/Button';
 import Card, { CardContent, CardHeader, CardTitle } from '@/app/components/ui/Card';
-import { formatCurrency, calculateCartTotal, isAuthenticated } from '@/app/lib/utils';
+import { formatCurrency, calculateCartTotal } from '@/app/lib/utils';
+import { useAuth } from '@/app/contexts/AuthContext';
 
 export default function CartPage() {
   const router = useRouter();
+  const { user, isLoggedIn } = useAuth();
   const [cart, setCart] = useState<Cart | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [updatingItems, setUpdatingItems] = useState<Set<number>>(new Set());
 
   useEffect(() => {
-    if (!isAuthenticated()) {
+    if (!isLoggedIn || !user) {
       router.push('/login');
       return;
     }
     
     fetchCart();
-  }, []);
+  }, [isLoggedIn, user]);
 
   const fetchCart = async () => {
+    if (!user) return;
+    
     try {
-      // For now, assume user ID is 1 (we'll implement proper auth later)
-      const userId = 1;
+      // Use the actual logged-in user's ID
+      const userId = parseInt(user.id);
       const cartData = await cartsService.getUserCart(userId);
       setCart(cartData);
       setError(null);
@@ -36,7 +40,7 @@ export default function CartPage() {
       console.error('Failed to fetch cart:', err);
       // If cart doesn't exist, create one
       try {
-        const userId = 1;
+        const userId = parseInt(user.id);
         const newCart = await cartsService.createCart(userId);
         setCart(newCart);
       } catch (createErr) {

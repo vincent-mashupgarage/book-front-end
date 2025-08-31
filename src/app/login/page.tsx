@@ -8,9 +8,11 @@ import Button from '@/app/components/ui/Button';
 import Input from '@/app/components/ui/Input';
 import Card, { CardContent, CardHeader, CardTitle } from '@/app/components/ui/Card';
 import { isValidEmail } from '@/app/lib/utils';
+import { useAuth } from '@/app/contexts/AuthContext';
 
 export default function LoginPage() {
   const router = useRouter();
+  const { login } = useAuth();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -62,15 +64,15 @@ export default function LoginPage() {
     try {
       const response = await usersService.login(formData);
       
-      // Store user data in localStorage (in a real app, use a proper state management solution)
-      localStorage.setItem('user', JSON.stringify(response.user));
+      // Use the auth context to update the global auth state
+      login(response.user, response.token);
       
       // Redirect to the home page or intended destination
       router.push('/');
     } catch (err: any) {
       console.error('Login failed:', err);
       setErrors({
-        general: err.response?.data?.message || 'Login failed. Please check your credentials and try again.',
+        general: err.response?.data?.error || 'Login failed. Please check your credentials and try again.',
       });
     } finally {
       setIsSubmitting(false);
