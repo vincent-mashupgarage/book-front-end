@@ -25,7 +25,7 @@ export interface CreateBookData {
   category_id: number;
 }
 
-export interface UpdateBookData extends Partial<CreateBookData> {}
+export interface UpdateBookData extends Partial<CreateBookData> { }
 
 const BOOKS_ENDPOINT = '/books';
 
