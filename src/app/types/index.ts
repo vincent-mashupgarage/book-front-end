@@ -33,11 +33,11 @@ export interface Book {
     category?: Category;
     created_at: string;
     updated_at: string;
-  }
+}
 
 export interface CartItem {
     id: number;
-    card_id: number;
+    cart_id: number;
     book_id: number;
     book?: Book;
     quantity: number;
@@ -75,7 +75,7 @@ export interface Order {
     created_at: string;
     updated_at: string;
 }
-  
+
 
 export interface ApiResponse<T> {
     data: T;
@@ -93,4 +93,4 @@ export interface PaginationMeta {
 export interface BooksResponse {
     books: Book[];
     meta: PaginationMeta;
-  }
+}
