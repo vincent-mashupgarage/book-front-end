@@ -129,7 +129,7 @@ export default function ProfilePage() {
       case 'cancelled':
         return 'text-red-600 bg-red-100';
       default:
-        return 'text-gray-600 bg-gray-100';
+        return 'text-muted-foreground bg-gray-100';
     }
   };
 
@@ -138,7 +138,7 @@ export default function ProfilePage() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading profile...</p>
+          <p className="text-muted-foreground">Loading profile...</p>
         </div>
       </div>
     );
@@ -158,10 +158,10 @@ export default function ProfilePage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-4">
+        <h1 className="text-3xl font-bold text-foreground mb-4">
           My Account
         </h1>
-        <p className="text-lg text-gray-600">
+        <p className="text-lg text-muted-foreground">
           Manage your profile and view your orders
         </p>
       </div>
@@ -174,7 +174,7 @@ export default function ProfilePage() {
             className={`py-2 px-1 border-b-2 font-medium text-sm ${
               activeTab === 'profile'
                 ? 'border-blue-500 text-blue-600'
-                : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                : 'border-transparent text-muted-foreground hover:text-foreground hover:border-gray-300'
             }`}
           >
             Profile Information
@@ -184,7 +184,7 @@ export default function ProfilePage() {
             className={`py-2 px-1 border-b-2 font-medium text-sm ${
               activeTab === 'orders'
                 ? 'border-blue-500 text-blue-600'
-                : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                : 'border-transparent text-muted-foreground hover:text-foreground hover:border-gray-300'
             }`}
           >
             Order History ({orders.length})
@@ -259,7 +259,7 @@ export default function ProfilePage() {
             <Card>
               <CardContent className="text-center py-12">
                 <svg
-                  className="mx-auto h-24 w-24 text-gray-400 mb-4"
+                  className="mx-auto h-24 w-24 text-muted-foreground mb-4"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -271,10 +271,10 @@ export default function ProfilePage() {
                     d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                   />
                 </svg>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                <h3 className="text-lg font-semibold text-foreground mb-2">
                   No orders yet
                 </h3>
-                <p className="text-gray-600 mb-4">
+                <p className="text-muted-foreground mb-4">
                   You haven't placed any orders yet.
                 </p>
                 <Link href="/books">
@@ -291,7 +291,7 @@ export default function ProfilePage() {
                   <div className="flex justify-between items-start">
                     <div>
                       <CardTitle>Order #{order.id}</CardTitle>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-muted-foreground">
                         Placed on {formatDateTime(order.created_at)}
                       </p>
                     </div>
@@ -308,7 +308,7 @@ export default function ProfilePage() {
                       <div key={item.id} className="flex justify-between items-center">
                         <div>
                           <h4 className="font-medium">{item.book?.title}</h4>
-                          <p className="text-sm text-gray-600">
+                          <p className="text-sm text-muted-foreground">
                             Quantity: {item.quantity}
                           </p>
                         </div>
@@ -325,8 +325,8 @@ export default function ProfilePage() {
                     </div>
                     {order.shipping_address && (
                       <div className="text-sm">
-                        <span className="font-medium text-gray-700">Shipping to:</span>
-                        <span className="ml-2 text-gray-600">{order.shipping_address}</span>
+                        <span className="font-medium text-foreground">Shipping to:</span>
+                        <span className="ml-2 text-muted-foreground">{order.shipping_address}</span>
                       </div>
                     )}
                   </div>

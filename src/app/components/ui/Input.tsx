@@ -4,12 +4,12 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/app/lib/utils';
 
 const inputVariants = cva(
-  "flex w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:cursor-not-allowed disabled:opacity-50 dark:bg-gray-950 dark:border-gray-700 dark:text-gray-50 dark:placeholder:text-gray-500 dark:focus:ring-blue-400",
+  "flex w-full rounded-md border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent disabled:cursor-not-allowed disabled:opacity-50",
   {
     variants: {
       variant: {
-        default: "border-gray-300 dark:border-gray-700",
-        error: "border-red-500 focus:ring-red-500 dark:border-red-400 dark:focus:ring-red-400",
+        default: "border-input",
+        error: "border-destructive focus:ring-destructive",
       },
       size: {
         default: "h-10",
@@ -29,8 +29,8 @@ const labelVariants = cva(
   {
     variants: {
       variant: {
-        default: "text-gray-700 dark:text-gray-300",
-        error: "text-red-600 dark:text-red-400",
+        default: "text-foreground",
+        error: "text-destructive",
       },
     },
     defaultVariants: {
@@ -70,10 +70,10 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           {...props}
         />
         {error && (
-          <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
+          <p className="text-sm text-destructive">{error}</p>
         )}
         {helperText && !error && (
-          <p className="text-sm text-gray-500 dark:text-gray-400">{helperText}</p>
+          <p className="text-sm text-muted-foreground">{helperText}</p>
         )}
       </div>
     );

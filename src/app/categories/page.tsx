@@ -34,7 +34,7 @@ export default function CategoriesPage() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading categories...</p>
+          <p className="text-muted-foreground">Loading categories...</p>
         </div>
       </div>
     );
@@ -54,17 +54,17 @@ export default function CategoriesPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-4">
+        <h1 className="text-3xl font-bold text-foreground mb-4">
           Browse Categories
         </h1>
-        <p className="text-lg text-gray-600">
+        <p className="text-lg text-muted-foreground">
           Explore books by category to find exactly what you're looking for
         </p>
       </div>
 
       {categories.length === 0 ? (
         <div className="text-center py-12">
-          <p className="text-gray-600 text-lg">
+          <p className="text-muted-foreground text-lg">
             No categories available at the moment.
           </p>
         </div>
@@ -79,7 +79,7 @@ export default function CategoriesPage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-600 mb-4">
+                  <p className="text-muted-foreground mb-4">
                     {category.description || 'Explore books in this category'}
                   </p>
                   <div className="text-blue-600 font-medium">

@@ -109,7 +109,7 @@ export default function CheckoutPage() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading checkout...</p>
+          <p className="text-muted-foreground">Loading checkout...</p>
         </div>
       </div>
     );
@@ -133,10 +133,10 @@ export default function CheckoutPage() {
     return (
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">
+          <h1 className="text-2xl font-bold text-foreground mb-4">
             Your cart is empty
           </h1>
-          <p className="text-gray-600 mb-6">
+          <p className="text-muted-foreground mb-6">
             Add some books to your cart before checkout.
           </p>
           <Button onClick={() => router.push('/books')}>
@@ -149,7 +149,7 @@ export default function CheckoutPage() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold text-gray-900 mb-8">
+      <h1 className="text-3xl font-bold text-foreground mb-8">
         Checkout
       </h1>
 
@@ -201,7 +201,7 @@ export default function CheckoutPage() {
                     onChange={(e) => setPaymentMethod(e.target.value)}
                     className="h-4 w-4 text-blue-600 focus:ring-blue-500"
                   />
-                  <label htmlFor="credit_card" className="ml-2 text-sm text-gray-900">
+                  <label htmlFor="credit_card" className="ml-2 text-sm text-foreground">
                     Credit Card
                   </label>
                 </div>
@@ -216,7 +216,7 @@ export default function CheckoutPage() {
                     onChange={(e) => setPaymentMethod(e.target.value)}
                     className="h-4 w-4 text-blue-600 focus:ring-blue-500"
                   />
-                  <label htmlFor="cash_on_delivery" className="ml-2 text-sm text-gray-900">
+                  <label htmlFor="cash_on_delivery" className="ml-2 text-sm text-foreground">
                     Cash on Delivery
                   </label>
                 </div>
@@ -237,10 +237,10 @@ export default function CheckoutPage() {
                 {cartItems.map((item) => (
                   <div key={item.id} className="flex justify-between">
                     <div className="flex-1">
-                      <h4 className="text-sm font-medium text-gray-900">
+                      <h4 className="text-sm font-medium text-foreground">
                         {item.book?.title}
                       </h4>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-muted-foreground">
                         Qty: {item.quantity} × {formatCurrency(item.book?.price || 0)}
                       </p>
                     </div>

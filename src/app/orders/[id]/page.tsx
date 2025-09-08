@@ -53,7 +53,7 @@ export default function OrderDetailPage() {
       case 'cancelled':
         return 'text-red-600 bg-red-100';
       default:
-        return 'text-gray-600 bg-gray-100';
+        return 'text-muted-foreground bg-gray-100';
     }
   };
 
@@ -62,7 +62,7 @@ export default function OrderDetailPage() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading order details...</p>
+          <p className="text-muted-foreground">Loading order details...</p>
         </div>
       </div>
     );
@@ -108,10 +108,10 @@ export default function OrderDetailPage() {
       <div className="mb-8">
         <div className="flex justify-between items-start">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">
+            <h1 className="text-3xl font-bold text-foreground">
               Order #{order.id}
             </h1>
-            <p className="text-lg text-gray-600 mt-1">
+            <p className="text-lg text-muted-foreground mt-1">
               Placed on {formatDateTime(order.created_at)}
             </p>
           </div>
@@ -134,25 +134,25 @@ export default function OrderDetailPage() {
                   <div key={item.id} className="flex space-x-4">
                     <div className="flex-shrink-0">
                       <div className="w-16 h-20 bg-gray-200 rounded-md flex items-center justify-center">
-                        <span className="text-xs text-gray-500">Cover</span>
+                        <span className="text-xs text-muted-foreground">Cover</span>
                       </div>
                     </div>
                     <div className="flex-1">
-                      <h3 className="font-medium text-gray-900">
+                      <h3 className="font-medium text-foreground">
                         {item.book?.title}
                       </h3>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-muted-foreground">
                         by {item.book?.author}
                       </p>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-muted-foreground">
                         Quantity: {item.quantity}
                       </p>
                     </div>
                     <div className="text-right">
-                      <p className="font-medium text-gray-900">
+                      <p className="font-medium text-foreground">
                         {formatCurrency(item.price_at_purchase)}
                       </p>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-muted-foreground">
                         each
                       </p>
                     </div>
@@ -194,7 +194,7 @@ export default function OrderDetailPage() {
               <CardTitle>Shipping Address</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-gray-900">
+              <p className="text-foreground">
                 {order.shipping_address || 'No shipping address provided'}
               </p>
             </CardContent>
@@ -206,10 +206,10 @@ export default function OrderDetailPage() {
             </CardHeader>
             <CardContent>
               <div className="space-y-2">
-                <p className="text-gray-900">
+                <p className="text-foreground">
                   {order.user?.name}
                 </p>
-                <p className="text-gray-600">
+                <p className="text-muted-foreground">
                   {order.user?.email}
                 </p>
               </div>

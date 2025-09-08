@@ -45,8 +45,8 @@ export function ThemeToggle() {
       <DropdownMenu.Portal>
         <DropdownMenu.Content
           className={cn(
-            "min-w-[8rem] overflow-hidden rounded-md border bg-white p-1 shadow-md",
-            "dark:bg-gray-950 dark:border-gray-800",
+            "min-w-[8rem] overflow-hidden rounded-md border bg-popover p-1 shadow-md",
+            "border-border",
             "data-[state=open]:animate-in data-[state=closed]:animate-out",
             "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
             "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
@@ -59,8 +59,7 @@ export function ThemeToggle() {
           <DropdownMenu.Item
             className={cn(
               "relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors",
-              "hover:bg-gray-100 focus:bg-gray-100 dark:hover:bg-gray-800 dark:focus:bg-gray-800",
-              "dark:text-gray-50"
+              "text-popover-foreground hover:bg-accent focus:bg-accent"
             )}
             onClick={() => setTheme('light')}
           >
@@ -77,8 +76,7 @@ export function ThemeToggle() {
           <DropdownMenu.Item
             className={cn(
               "relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors",
-              "hover:bg-gray-100 focus:bg-gray-100 dark:hover:bg-gray-800 dark:focus:bg-gray-800",
-              "dark:text-gray-50"
+              "text-popover-foreground hover:bg-accent focus:bg-accent"
             )}
             onClick={() => setTheme('dark')}
           >
@@ -95,8 +93,7 @@ export function ThemeToggle() {
           <DropdownMenu.Item
             className={cn(
               "relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors",
-              "hover:bg-gray-100 focus:bg-gray-100 dark:hover:bg-gray-800 dark:focus:bg-gray-800",
-              "dark:text-gray-50"
+              "text-popover-foreground hover:bg-accent focus:bg-accent"
             )}
             onClick={() => setTheme('system')}
           >

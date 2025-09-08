@@ -88,10 +88,10 @@ export default function BooksPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-4">
+        <h1 className="text-3xl font-bold text-foreground mb-4">
           Browse Books
         </h1>
-        <p className="text-lg text-gray-600">
+        <p className="text-lg text-muted-foreground">
           Discover your next great read from our collection
         </p>
       </div>
@@ -130,11 +130,11 @@ export default function BooksPage() {
       {loading ? (
         <div className="text-center py-12">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading books...</p>
+          <p className="text-muted-foreground">Loading books...</p>
         </div>
       ) : books.length === 0 ? (
         <div className="text-center py-12">
-          <p className="text-gray-600 text-lg mb-4">
+          <p className="text-muted-foreground text-lg mb-4">
             No books found.
           </p>
         </div>
@@ -146,12 +146,12 @@ export default function BooksPage() {
                 <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
                   <CardContent className="p-4">
                     <div className="aspect-[3/4] bg-gray-200 rounded-md mb-4 flex items-center justify-center">
-                      <span className="text-gray-500 text-sm">Book Cover</span>
+                      <span className="text-muted-foreground text-sm">Book Cover</span>
                     </div>
-                    <h3 className="font-semibold text-gray-900 mb-2">
+                    <h3 className="font-semibold text-foreground mb-2">
                       {book.title}
                     </h3>
-                    <p className="text-sm text-gray-600 mb-2">
+                    <p className="text-sm text-muted-foreground mb-2">
                       by {book.author}
                     </p>
                     <p className="text-lg font-bold text-blue-600">
@@ -173,7 +173,7 @@ export default function BooksPage() {
                 Previous
               </Button>
               
-              <span className="text-gray-600">
+              <span className="text-muted-foreground">
                 Page {currentPage} of {totalPages}
               </span>
               

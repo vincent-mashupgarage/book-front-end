@@ -103,7 +103,7 @@ export default function CartPage() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading cart...</p>
+          <p className="text-muted-foreground">Loading cart...</p>
         </div>
       </div>
     );
@@ -126,10 +126,10 @@ export default function CartPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-4">
+        <h1 className="text-3xl font-bold text-foreground mb-4">
           Shopping Cart
         </h1>
-        <p className="text-lg text-gray-600">
+        <p className="text-lg text-muted-foreground">
           Review your items before checkout
         </p>
       </div>
@@ -138,7 +138,7 @@ export default function CartPage() {
         <div className="text-center py-12">
           <div className="mb-8">
             <svg
-              className="mx-auto h-24 w-24 text-gray-400"
+              className="mx-auto h-24 w-24 text-muted-foreground"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -151,10 +151,10 @@ export default function CartPage() {
               />
             </svg>
           </div>
-          <h2 className="text-xl font-semibold text-gray-900 mb-4">
+          <h2 className="text-xl font-semibold text-foreground mb-4">
             Your cart is empty
           </h2>
-          <p className="text-gray-600 mb-8">
+          <p className="text-muted-foreground mb-8">
             Looks like you haven't added any books to your cart yet.
           </p>
           <Link href="/books">
@@ -174,16 +174,16 @@ export default function CartPage() {
                     {/* Book Image */}
                     <div className="flex-shrink-0">
                       <div className="w-20 h-28 bg-gray-200 rounded-md flex items-center justify-center">
-                        <span className="text-xs text-gray-500">Cover</span>
+                        <span className="text-xs text-muted-foreground">Cover</span>
                       </div>
                     </div>
 
                     {/* Book Details */}
                     <div className="flex-1 min-w-0">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-1">
+                      <h3 className="text-lg font-semibold text-foreground mb-1">
                         {item.book?.title}
                       </h3>
-                      <p className="text-sm text-gray-600 mb-2">
+                      <p className="text-sm text-muted-foreground mb-2">
                         by {item.book?.author}
                       </p>
                       <p className="text-lg font-bold text-blue-600">

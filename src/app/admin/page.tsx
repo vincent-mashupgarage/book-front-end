@@ -68,7 +68,7 @@ export default function AdminDashboard() {
       case 'cancelled':
         return 'text-red-600 bg-red-100';
       default:
-        return 'text-gray-600 bg-gray-100';
+        return 'text-muted-foreground bg-muted';
     }
   };
 
@@ -77,7 +77,7 @@ export default function AdminDashboard() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading dashboard...</p>
+          <p className="text-muted-foreground">Loading dashboard...</p>
         </div>
       </div>
     );
@@ -97,10 +97,10 @@ export default function AdminDashboard() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-4">
+        <h1 className="text-3xl font-bold text-foreground mb-4">
           Admin Dashboard
         </h1>
-        <p className="text-lg text-gray-600">
+        <p className="text-lg text-muted-foreground">
           Manage your bookstore from here
         </p>
       </div>
@@ -109,12 +109,12 @@ export default function AdminDashboard() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-gray-600">
+            <CardTitle className="text-sm font-medium text-muted-foreground">
               Total Books
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-gray-900">
+            <div className="text-2xl font-bold text-foreground">
               {stats?.totalBooks || 0}
             </div>
             <Link href="/admin/books">
@@ -127,12 +127,12 @@ export default function AdminDashboard() {
 
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-gray-600">
+            <CardTitle className="text-sm font-medium text-muted-foreground">
               Categories
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-gray-900">
+            <div className="text-2xl font-bold text-foreground">
               {stats?.totalCategories || 0}
             </div>
             <Link href="/admin/categories">
@@ -145,12 +145,12 @@ export default function AdminDashboard() {
 
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-gray-600">
+            <CardTitle className="text-sm font-medium text-muted-foreground">
               Total Orders
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-gray-900">
+            <div className="text-2xl font-bold text-foreground">
               {stats?.totalOrders || 0}
             </div>
             <Link href="/admin/orders">
@@ -163,12 +163,12 @@ export default function AdminDashboard() {
 
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-gray-600">
+            <CardTitle className="text-sm font-medium text-muted-foreground">
               Total Users
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-gray-900">
+            <div className="text-2xl font-bold text-foreground">
               {stats?.totalUsers || 0}
             </div>
             <Link href="/admin/users">
@@ -224,7 +224,7 @@ export default function AdminDashboard() {
                   <div key={order.id} className="flex justify-between items-center">
                     <div>
                       <p className="font-medium">Order #{order.id}</p>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-muted-foreground">
                         {order.user?.name}
                       </p>
                     </div>
@@ -245,7 +245,7 @@ export default function AdminDashboard() {
                 </Link>
               </div>
             ) : (
-              <p className="text-gray-600 text-center py-4">
+              <p className="text-muted-foreground text-center py-4">
                 No orders yet
               </p>
             )}
@@ -260,7 +260,7 @@ export default function AdminDashboard() {
             <CardContent className="text-center p-6">
               <div className="text-4xl mb-4">📚</div>
               <h3 className="text-lg font-semibold mb-2">Books Management</h3>
-              <p className="text-gray-600">Add, edit, and manage book inventory</p>
+              <p className="text-muted-foreground">Add, edit, and manage book inventory</p>
             </CardContent>
           </Card>
         </Link>
@@ -270,7 +270,7 @@ export default function AdminDashboard() {
             <CardContent className="text-center p-6">
               <div className="text-4xl mb-4">🏷️</div>
               <h3 className="text-lg font-semibold mb-2">Categories</h3>
-              <p className="text-gray-600">Organize books into categories</p>
+              <p className="text-muted-foreground">Organize books into categories</p>
             </CardContent>
           </Card>
         </Link>
@@ -280,7 +280,7 @@ export default function AdminDashboard() {
             <CardContent className="text-center p-6">
               <div className="text-4xl mb-4">📦</div>
               <h3 className="text-lg font-semibold mb-2">Orders</h3>
-              <p className="text-gray-600">Track and manage customer orders</p>
+              <p className="text-muted-foreground">Track and manage customer orders</p>
             </CardContent>
           </Card>
         </Link>

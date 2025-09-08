@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
@@ -10,10 +9,11 @@ import Button from './ui/Button';
 import { cn } from '@/app/lib/utils';
 import { ThemeToggle } from './ThemeToggle';
 import { useAuth } from '@/app/contexts/AuthContext';
+import { useCart } from '@/app/contexts/CartContext';
 
 export default function Header() {
   const { user, isLoggedIn, logout: authLogout, isLoading } = useAuth();
-  const [cartItemCount, setCartItemCount] = useState(0);
+  const { cartItemCount } = useCart();
   const router = useRouter();
 
   const handleLogout = async () => {
@@ -26,12 +26,12 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-white shadow-sm border-b border-gray-200 dark:bg-gray-950 dark:border-gray-800">
+    <header className="bg-card shadow-sm border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <Link href="/" className="text-xl font-bold text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300">
+            <Link href="/" className="text-xl font-bold text-primary hover:text-primary/80">
               📚 Bookworm
             </Link>
           </div>
@@ -45,8 +45,7 @@ export default function Header() {
                     href="/books"
                     className={cn(
                       "block select-none rounded-md px-3 py-2 text-sm font-medium transition-colors",
-                      "text-gray-700 hover:text-blue-600 hover:bg-gray-50",
-                      "dark:text-gray-200 dark:hover:text-blue-400 dark:hover:bg-gray-800"
+                      "text-foreground hover:text-primary hover:bg-accent"
                     )}
                   >
                     Books
@@ -60,8 +59,7 @@ export default function Header() {
                     href="/categories"
                     className={cn(
                       "block select-none rounded-md px-3 py-2 text-sm font-medium transition-colors",
-                      "text-gray-700 hover:text-blue-600 hover:bg-gray-50",
-                      "dark:text-gray-200 dark:hover:text-blue-400 dark:hover:bg-gray-800"
+                      "text-foreground hover:text-primary hover:bg-accent"
                     )}
                   >
                     Categories
@@ -77,11 +75,11 @@ export default function Header() {
               <input
                 type="text"
                 placeholder="Search books..."
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-900 dark:border-gray-600 dark:text-gray-100 dark:placeholder-gray-400"
+                className="w-full pl-10 pr-4 py-2 border border-input bg-background text-foreground rounded-md focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent placeholder:text-muted-foreground"
               />
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <svg
-                  className="h-5 w-5 text-gray-400 dark:text-gray-500"
+                  className="h-5 w-5 text-muted-foreground"
                   fill="none"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -103,7 +101,7 @@ export default function Header() {
             {/* Cart */}
             <Link
               href="/cart"
-              className="relative p-2 text-gray-700 hover:text-blue-600 transition-colors dark:text-gray-200 dark:hover:text-blue-400"
+              className="relative p-2 text-foreground hover:text-primary transition-colors"
             >
               <svg
                 className="h-6 w-6"
@@ -127,9 +125,9 @@ export default function Header() {
             {isLoggedIn ? (
               <DropdownMenu.Root>
                 <DropdownMenu.Trigger asChild>
-                  <button className="flex items-center space-x-2 text-sm text-gray-700 hover:text-blue-600 transition-colors dark:text-gray-200 dark:hover:text-blue-400">
-                    <Avatar.Root className="inline-flex h-8 w-8 select-none items-center justify-center overflow-hidden rounded-full bg-gray-100 dark:bg-gray-700">
-                      <Avatar.Fallback className="text-sm font-medium text-gray-600 dark:text-gray-300">
+                  <button className="flex items-center space-x-2 text-sm text-foreground hover:text-primary transition-colors">
+                    <Avatar.Root className="inline-flex h-8 w-8 select-none items-center justify-center overflow-hidden rounded-full bg-muted">
+                      <Avatar.Fallback className="text-sm font-medium text-muted-foreground">
                         {user?.name?.charAt(0)?.toUpperCase() || 'U'}
                       </Avatar.Fallback>
                     </Avatar.Root>
@@ -143,8 +141,8 @@ export default function Header() {
                 <DropdownMenu.Portal>
                   <DropdownMenu.Content
                     className={cn(
-                      "min-w-[8rem] overflow-hidden rounded-md border bg-white p-1 shadow-md",
-                      "dark:bg-gray-950 dark:border-gray-800",
+                      "min-w-[8rem] overflow-hidden rounded-md border bg-popover p-1 shadow-md",
+                      "border-border",
                       "data-[state=open]:animate-in data-[state=closed]:animate-out",
                       "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
                       "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
@@ -159,8 +157,7 @@ export default function Header() {
                         href="/profile"
                         className={cn(
                           "relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors",
-                          "hover:bg-gray-100 focus:bg-gray-100 dark:hover:bg-gray-800 dark:focus:bg-gray-800",
-                          "dark:text-gray-50"
+                          "text-popover-foreground hover:bg-accent focus:bg-accent"
                         )}
                       >
                         Profile
@@ -171,16 +168,15 @@ export default function Header() {
                         href="/orders"
                         className={cn(
                           "relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors",
-                          "hover:bg-gray-100 focus:bg-gray-100 dark:hover:bg-gray-800 dark:focus:bg-gray-800",
-                          "dark:text-gray-50"
+                          "text-popover-foreground hover:bg-accent focus:bg-accent"
                         )}
                       >
                         Orders
                       </Link>
                     </DropdownMenu.Item>
-                    <DropdownMenu.Separator className="-mx-1 my-1 h-px bg-gray-200 dark:bg-gray-700" />
+                    <DropdownMenu.Separator className="-mx-1 my-1 h-px bg-border" />
                     <DropdownMenu.Item
-                      className="relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:bg-gray-100 focus:bg-gray-100 text-red-600 dark:hover:bg-gray-800 dark:focus:bg-gray-800 dark:text-red-400"
+                      className="relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:bg-accent focus:bg-accent text-destructive"
                       onClick={handleLogout}
                     >
                       Logout

@@ -3,16 +3,18 @@
 import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { Book } from '@/app/types';
-import { booksService, cartsService } from '@/app/lib/api';
+import { booksService } from '@/app/lib/api';
 import Button from '@/app/components/ui/Button';
 import Card, { CardContent, CardHeader, CardTitle } from '@/app/components/ui/Card';
 import { formatCurrency, formatDate } from '@/app/lib/utils';
 import { useAuth } from '@/app/contexts/AuthContext';
+import { useCart } from '@/app/contexts/CartContext';
 
 export default function BookDetailPage() {
   const params = useParams();
   const router = useRouter();
   const { user, isLoggedIn } = useAuth();
+  const { addItemToCart } = useCart();
   const [book, setBook] = useState<Book | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -48,23 +50,7 @@ export default function BookDetailPage() {
 
     setAddingToCart(true);
     try {
-      // Use the actual logged-in user's ID
-      const userId = parseInt(user.id);
-      
-      // Get or create user's cart
-      let cart;
-      try {
-        cart = await cartsService.getUserCart(userId);
-      } catch {
-        cart = await cartsService.createCart(userId);
-      }
-
-      // Add item to cart
-      await cartsService.addToCart(cart.id, {
-        book_id: book.id,
-        quantity: quantity,
-      });
-
+      await addItemToCart(book.id, quantity);
       alert('Book added to cart successfully!');
     } catch (err) {
       console.error('Failed to add to cart:', err);
@@ -79,7 +65,7 @@ export default function BookDetailPage() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading book details...</p>
+          <p className="text-muted-foreground">Loading book details...</p>
         </div>
       </div>
     );
@@ -102,17 +88,17 @@ export default function BookDetailPage() {
         {/* Book Image */}
         <div className="space-y-4">
           <div className="aspect-[3/4] bg-gray-200 rounded-lg flex items-center justify-center">
-            <span className="text-gray-500">Book Cover</span>
+            <span className="text-muted-foreground">Book Cover</span>
           </div>
         </div>
 
         {/* Book Details */}
         <div className="space-y-6">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            <h1 className="text-3xl font-bold text-foreground mb-2">
               {book.title}
             </h1>
-            <p className="text-xl text-gray-600 mb-4">
+            <p className="text-xl text-muted-foreground mb-4">
               by {book.author}
             </p>
             <p className="text-3xl font-bold text-blue-600 mb-4">
@@ -143,7 +129,7 @@ export default function BookDetailPage() {
           {book.stock_quantity > 0 && (
             <div className="space-y-4">
               <div className="flex items-center space-x-4">
-                <label htmlFor="quantity" className="text-sm font-medium text-gray-700">
+                <label htmlFor="quantity" className="text-sm font-medium text-foreground">
                   Quantity:
                 </label>
                 <select
@@ -180,36 +166,36 @@ export default function BookDetailPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
                 {book.isbn && (
                   <div>
-                    <span className="font-medium text-gray-700">ISBN:</span>
-                    <span className="ml-2 text-gray-600">{book.isbn}</span>
+                    <span className="font-medium text-foreground">ISBN:</span>
+                    <span className="ml-2 text-muted-foreground">{book.isbn}</span>
                   </div>
                 )}
                 {book.publisher && (
                   <div>
-                    <span className="font-medium text-gray-700">Publisher:</span>
-                    <span className="ml-2 text-gray-600">{book.publisher}</span>
+                    <span className="font-medium text-foreground">Publisher:</span>
+                    <span className="ml-2 text-muted-foreground">{book.publisher}</span>
                   </div>
                 )}
                 {book.publication_date && (
                   <div>
-                    <span className="font-medium text-gray-700">Published:</span>
-                    <span className="ml-2 text-gray-600">{formatDate(book.publication_date)}</span>
+                    <span className="font-medium text-foreground">Published:</span>
+                    <span className="ml-2 text-muted-foreground">{formatDate(book.publication_date)}</span>
                   </div>
                 )}
                 {book.page_count && (
                   <div>
-                    <span className="font-medium text-gray-700">Pages:</span>
-                    <span className="ml-2 text-gray-600">{book.page_count}</span>
+                    <span className="font-medium text-foreground">Pages:</span>
+                    <span className="ml-2 text-muted-foreground">{book.page_count}</span>
                   </div>
                 )}
                 <div>
-                  <span className="font-medium text-gray-700">Language:</span>
-                  <span className="ml-2 text-gray-600">{book.language}</span>
+                  <span className="font-medium text-foreground">Language:</span>
+                  <span className="ml-2 text-muted-foreground">{book.language}</span>
                 </div>
                 {book.category && (
                   <div>
-                    <span className="font-medium text-gray-700">Category:</span>
-                    <span className="ml-2 text-gray-600">{book.category.name}</span>
+                    <span className="font-medium text-foreground">Category:</span>
+                    <span className="ml-2 text-muted-foreground">{book.category.name}</span>
                   </div>
                 )}
               </div>
@@ -223,7 +209,7 @@ export default function BookDetailPage() {
                 <CardTitle>Description</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-muted-foreground leading-relaxed">
                   {book.description}
                 </p>
               </CardContent>
